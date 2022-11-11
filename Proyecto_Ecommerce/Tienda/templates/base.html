@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <title>La Bodega Cerveza</title>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="70">
+
+    <!-- BOTTOM NAV -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'Inicio' %}">La Bodega Cerveza<span class="dot">.</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    
+                    <li class="nav-item">
+                        <a class="btn btn-brand ms-lg-3" href="{% url 'Catalogo' %}">Catálogo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a  class="btn btn-brand ms-lg-3" href="{% url 'Carro' %}">Carrito</a>
+                        
+                        
+                    </li>  
+                </ul>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    class="btn btn-brand ms-lg-3">Inicar Sesion</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SLIDER -->
+    {% block Slider %}
+        
+    <div class="owl-carousel owl-theme hero-slider">
+        <div class="slide slide1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center text-white">
+                        <h6 class="text-white text-uppercase">design Driven for professional</h6>
+                        <h1 class="display-3 my-4">We craft digital<br />experiances</h1>
+                        <a href="#" class="btn btn-brand">Get Started</a>
+                        <a href="#" class="btn btn-outline-light ms-3">Our work</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide slide2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-lg-10 offset-lg-1 text-white">
+                        <h6 class="text-white text-uppercase">We craft digital experiances</h6>
+                        <h1 class="display-3 my-4">Design Driven For <br />Professionals</h1>
+                        <a href="#" class="btn btn-brand">Get Started</a>
+                        <a href="#" class="btn btn-outline-light ms-3">Our work</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+    
+    {% block Contenido %}
+        
+    {% endblock %}
+        
+    
+    <!-- MILESTONE -->
+    {% block Estadisticas %}
+        
+    <section id="milestone">
+        <div class="container">
+            <div class="row text-center justify-content-center gy-4">
+                <div class="col-lg-2 col-sm-6">
+                    <h1 class="display-4">90K+</h1>
+                    <p class="mb-0">Happy Clients</p>
+                </div>
+                <div class="col-lg-2 col-sm-6">
+                    <h1 class="display-4">45M</h1>
+                    <p class="mb-0">Lines of code</p>
+                </div>
+                <div class="col-lg-2 col-sm-6">
+                    <h1 class="display-4">190</h1>
+                    <p class="mb-0">Total Downloads</p>
+                </div>
+                <div class="col-lg-2 col-sm-6">
+                    <h1 class="display-4">380K</h1>
+                    <p class="mb-0">YouTube Subscribers</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endblock %}
+
+    <!-- Imagenes -->
+        <div id="projects-slider" class="owl-theme owl-carousel">
+            <div class="project">
+                <div class="overlay"></div>
+                <img src="{% static 'img/Cer1.png' %}" alt="">
+                <div class="content">
+                    <h2>Consulting Marketing</h2>
+                    <h6>Website Design</h6>
+                </div>
+            </div>
+            <div class="project">
+                <div class="overlay"></div>
+                <img src="{% static 'img/Cer2.jpg' %}" alt="">
+                <div class="content">
+                    <h2>Consulting Marketing</h2>
+                    <h6>Website Design</h6>
+                </div>
+            </div>
+            <div class="project">
+                <div class="overlay"></div>
+                <img src="{% static 'img/Cer3.jpg' %}" alt="">
+                <div class="content">
+                    <h2>Consulting Marketing</h2>
+                    <h6>Website Design</h6>
+                </div>
+            </div>
+            <div class="project">
+                <div class="overlay"></div>
+                <img src="{% static 'img/Cer4.jpg' %}" alt="">
+                <div class="content">
+                    <h2>Consulting Marketing</h2>
+                    <h6>Website Design</h6>
+                </div>
+            </div>
+            <div class="project">
+                <div class="overlay"></div>
+                <img src="{% static 'img/Ce5.jpg' %}" alt="">
+                <div class="content">
+                    <h2>Consulting Marketing</h2>
+                    <h6>Website Design</h6>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <h1>
+   </h1>
+   <h1>
+   </h1>
+
+    <footer>
+        <div class="footer-top text-center">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 text-center">
+                        <h4 class="navbar-brand">La Bodega Cerveza<span class="dot">.</span></h4>
+                        <p>Este Proyecto fue creado con la intencion de aprender y mejor en el servicio.</p>
+                        <div class="col-auto social-icons">
+                            <a href="#"><i class='bx bxl-facebook'></i></a>
+                            <a href="#"><i class='bx bxl-twitter'></i></a>
+                            <a href="#"><i class='bx bxl-instagram'></i></a>
+                            <a href="#"><i class='bx bxl-pinterest'></i></a>
+                        </div>
+                        <div class="col-auto conditions-section">
+                            <a href="#">privacy</a>
+                            <a href="#">terms</a>
+                            <a href="#">disclaimer</i></a>
+                        </div>
+                    </div>
+         
+   
+
+
+
+
+
+
+
+
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+</body>
+
+</html>
