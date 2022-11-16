@@ -1,9 +1,11 @@
-from django.contrib.auth import views
+from . import views
 from django.urls import path
 
-from .views import carro
-
+app_name="Carro"
 
 urlpatterns = [
-    path('carro', carro, name='Carro')
+    path("agregar/<int:producto_id>", views.agregar_producto, name="Agregar"),
+    path("eliminar/<int:producto_id>", views.eliminar_producto, name="Eliminar"),
+    path("restar/<int:producto_id>", views.restar_producto, name="Restar"),
+    path("limpiar/", views.limpiar_carro, name="Limpiar"),
 ]

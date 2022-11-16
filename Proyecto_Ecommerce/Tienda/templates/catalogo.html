@@ -6,24 +6,40 @@
     <h6 class="text-primary text-uppercase">Catálogo</h6>
     <h2 class="display-5 text-uppercase mb-0">Encontrá tu producto ideal</h1>
 </div>
-{% for producto in productos %}
-<div class="container-fluid py-5">
-     <div class="container">
-            <div class="pb-5">
-                <div class="product-item position-relative bg-light d-flex flex-column text-center">
-                    <img class="img-fluid mb-4" src="{% if producto.imagen %}{{ producto.imagen.url }}{% endif %}" alt="">
-                    <h6 class="text-uppercase">{{producto.nombre}}</h6>
-                    <h5 class="text-primary mb-0">${{producto.precio}}</h5>
-                    <div class="btn-action d-flex justify-content-center">
-                        <a class="btn btn-primary py-2 px-3" href=""><i class='bx bx-cart'></i></a>
-                        <a class="btn btn-primary py-2 px-3" href=""><i class='bx bx-list-ul'></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+<div class="container">
+    <div style="float:right;">
+        {% include 'widget.html' %}
     </div>
+<div class="row">
+
+    {% for producto in productos %}
+
+    <div class="col-md-3">
+
+        <div class="card" style="width:100%; margin: 5px 5px;">
+            
+            <img src="{{ producto.imagen.url }}" class="card-img-top">
+            
+            <div class="card-body" style="text-align: center;">
+
+                <h6 class="card-title">{{producto.nombre}}</h6>
+
+                <p class="card-text">{{producto.precio}}</p>
+
+            </div>
+
+            <div class="card_footer text-center">
+                <a href="{% url 'Carro:Agregar' producto.id %}" class="btn btn-success">Agregar al carro</a>
+            </div>
+
+        </div>
+
+    </div>
+    {% endfor %}
+
 </div>
-{% endfor %}
-        
+</div>
+   
 {% endblock  %}
     

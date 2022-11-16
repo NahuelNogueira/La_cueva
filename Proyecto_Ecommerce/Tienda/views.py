@@ -8,6 +8,12 @@ def inicio(request):
     productos = Producto.objects.all()
     return render(request, 'inicio.html')
 
+def login(request):
+    return render(request, 'login.html')
+
+def signup(request):
+    return render(request, 'signup.html')
+
 def catalogo(request):
     
     categorias = Categoria.objects.all()
