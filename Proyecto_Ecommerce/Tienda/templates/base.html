@@ -34,14 +34,11 @@
                     <li class="nav-item">
                         <a class="btn btn-brand ms-lg-3" href="{% url 'Catalogo' %}">Catálogo</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a  class="btn btn-brand ms-lg-3" href="#">Carrito</a>
-                        
-                        
-                    </li>  
+                    </li>   -->
                 </ul>
-                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                    class="btn btn-brand ms-lg-3">Inicar Sesion</a>
+                <a href="{% url 'Login' %}" class="btn btn-brand ms-lg-3">Iniciar Sesion</a>
             </div>
         </div>
     </nav>
@@ -77,14 +74,9 @@
     </div>
     {% endblock %}
 
-    
-    {% block Contenido %}
-        
-    {% endblock %}
         
     
     <!-- MILESTONE -->
-    {% block Estadisticas %}
         
     <section id="milestone">
         <div class="container">
@@ -108,7 +100,6 @@
             </div>
         </div>
     </section>
-    {% endblock %}
 
     <!-- Imagenes -->
         <div id="projects-slider" class="owl-theme owl-carousel">
