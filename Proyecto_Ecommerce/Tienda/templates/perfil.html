@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block Slider %}
+        
+    <form method="POST">{% csrf_token %}
+
+        {{form.as_p}}
+
+        {{mensaje}}
+
+        <input type="submit" value="Actualizar"/>
+
+    </form>
+
+{% endblock  %}

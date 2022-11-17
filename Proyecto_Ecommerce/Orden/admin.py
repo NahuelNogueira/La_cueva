@@ -3,5 +3,4 @@ from .models import Pedido, Item_Pedido
 
 # Register your models here.
 
-admin.site.register(Pedido)
-admin.site.register(Item_Pedido)
+admin.site.register([Pedido, Item_Pedido])

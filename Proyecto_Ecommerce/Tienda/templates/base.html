@@ -38,7 +38,16 @@
                         <a  class="btn btn-brand ms-lg-3" href="#">Carrito</a>
                     </li>   -->
                 </ul>
-                <a href="{% url 'Login' %}" class="btn btn-brand ms-lg-3">Iniciar Sesion</a>
+                {% if user.is_authenticated %}
+                    <p>Bienvenido {{user.username}}</p>
+                    <a href="{% url 'Logout' %}" class="btn btn-brand ms-lg-3">Salir</a>
+                    <a href="{% url 'Perfil' %}" class="btn btn-brand ms-lg-3">Perfil</a>
+                {% else %}
+                    <a href="{% url 'Login' %}" class="btn btn-brand ms-lg-3">Iniciar Sesion</a>
+                    <a href="{% url 'Registro' %}" class="btn btn-brand ms-lg-3">Registro</a>
+                {% endif %}
+
+                
             </div>
         </div>
     </nav>

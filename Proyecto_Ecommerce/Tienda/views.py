@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, UserEditForm
 from Producto.models import Producto, Categoria
 
 # Create your views here.
@@ -31,13 +32,15 @@ def login_request(request):
                 
                 login(request, user)
                 
-                return render(request, "inicio.html", {"mensaje":f"Bienvenido {usuario}"})
+                return redirect('Inicio')
             
             else:
                 
-                return render(request, "inicio.html", {"mensaje":"Error, datos incorrectos"})
+                messages.error(request, "Usuario no válido")
         
-        return render(request, "inicio.html", {"mensaje":"Error, formulario erroneo"})
+        else:
+            
+            messages.error(request, "Información incorrecta")
     
     else:
     
@@ -56,11 +59,46 @@ def registro(request):
             username = form.cleaned_data['username']
             form.save()
             return render(request, 'inicio.html', {"mensaje":"Usuario Creado"})
+        
+        else:
+            for msg in form.error_messages:
+                messages.error(request, form.error_messages[msg])
+            
+            return render(request, "registro.html", {"form":form})
     
     else:
         form = UserRegisterForm()
     
         return render(request, "registro.html", {"form":form})
+
+def editar_perfil(request):
+    
+    usuario = request.user
+    
+    if request.method == "POST":
+        
+        form = UserEditForm(request.POST)
+        
+        if form.is_valid():
+            
+            data = form.cleaned_data
+            
+            usuario.first_name = data["first_name"]
+            usuario.last_name = data["last_name"]
+            usuario.email = data["email"]
+            usuario.set_password(data["password1"])
+            
+            usuario.save()
+            
+            return render(request, "inicio.html", {"mensaje": "Datos actualizados"})
+        
+        return render(request, "perfil.html", {"mensaje":"Contraseñas no coinciden"})
+    
+    else:
+        
+        form = UserEditForm(instance=request.user)
+        
+        return render(request, "perfil.html", {"form":form})
 
 def catalogo(request):
     

@@ -29,9 +29,11 @@
 
             </div>
 
-            <div class="card_footer text-center">
-                <a href="{% url 'Carro:Agregar' producto.id %}" class="btn btn-success">Agregar al carro</a>
-            </div>
+            {% if user.is_authenticated %}
+                <div class="card_footer text-center">
+                    <a href="{% url 'Carro:Agregar' producto.id %}" class="btn btn-success">Agregar al carro</a>
+                </div>
+            {% endif %}
 
         </div>
 

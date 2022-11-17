@@ -4,7 +4,13 @@
 {% block Slider %}
 
     <form action="" method="POST">{% csrf_token %}
-
+        
+        {% if messages %}
+        {% for mensaje in messages %}
+            <span class="alert alert-{{mensaje.tags}}">{{mensaje}}</span>
+        {% endfor %}
+        {% endif %}
+        
         {{form.as_p}}
 
         <button type="submit">Iniciar Sesión</button>
