@@ -8,7 +8,7 @@ class Producto(models.Model):
     marca = models.CharField(max_length=50)
     precio = models.IntegerField()
     stock = models.IntegerField()
-    imagen =models.ImageField(upload_to='', blank=False, null=False)
+    imagen = models.ImageField(upload_to='', blank=False, null=False)
     creado = models.DateTimeField(auto_now_add=True)
     categoria = models.ForeignKey("Categoria", on_delete=models.CASCADE, default=None)
     

@@ -105,4 +105,20 @@ def catalogo(request):
     categorias = Categoria.objects.all()
     productos = Producto.objects.all()
     
-    return render(request, 'catalogo.html', {'categorias': categorias, 'productos':productos})
+    return render(request, 'tienda.html', {'categorias': categorias, 'productos':productos})
+
+def buscar(request):
+    
+    if request.GET['nombre']:
+        
+        nombre = request.GET['nombre']
+        
+        productos = Producto.objects.filter(nombre__icontains=nombre)
+        
+        return render(request, 'busqueda.html', {'productos':productos, 'nombre':nombre})   
+    
+    else:
+        
+        respuesta = 'No se encontró ese producto'
+        
+        return render(request, 'busqueda.html', {"respuesta":respuesta})     

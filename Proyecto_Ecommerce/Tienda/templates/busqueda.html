@@ -1,0 +1,45 @@
+{% extends 'tienda.html' %}
+
+{% load static %}
+
+<section class="about-section text-center" id="about">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-lg-8">
+                
+                {% if productos %}
+                    
+                <h2 class="text-white mb-4">Aqui está lo que buscabas!</h2>
+                    <ul>
+                    {% for producto in productos %}
+                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                            <div class="products-single fix">
+                                <div class="box-img-hover">
+                                    <img src="{{ producto.imagen.url }}" class="img-fluid" alt="Image">
+                                    <div class="mask-icon">
+                                        <ul>
+                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="Detalle"><i class="fas fa-eye"></i></a></li>
+                                        </ul>
+                                        {% if user.is_authenticated %}
+                                        <a class="cart" href="{% url 'Carro:Agregar' producto.id %}">Añadir</a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="why-text">
+                                    <h4>{{producto.nombre}}</h4>
+                                    <h5> $ {{producto.precio}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </ul>
+                {% else %}
+                    <h3 class="text-white-50">{{respuesta}}</h3>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% block Tienda %}
+{% endblock Tienda %}
+    

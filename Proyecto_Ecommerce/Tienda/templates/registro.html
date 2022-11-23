@@ -3,6 +3,10 @@
 
 {% block Slider %}
 
+<div style="text-align: center;">
+
+    <h1 style="font-weight: bold;">Hola! Un gusto conocerte</h1>
+
     <form action="" method="POST">{% csrf_token %}
 
         {{form.as_p}}
@@ -10,5 +14,13 @@
         <button type="submit">Registrate</button>
 
     </form>
+
+    <p>Ya tienes una cuenta?</p><a href="{% url 'Login' %}">Click aqui</a>
+</div>    
     
 {% endblock  %}
+
+{% block Destacados %}
+    
+{% endblock Destacados %}
+    

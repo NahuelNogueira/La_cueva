@@ -3,7 +3,11 @@
 {% load static %}
 
 {% block Slider %}
-        
+
+<div style="text-align: center;">
+
+    <h1 style="font-weight: bold;">Hola {{usuario}}</h1>
+
     <form method="POST">{% csrf_token %}
 
         {{form.as_p}}
@@ -13,5 +17,9 @@
         <input type="submit" value="Actualizar"/>
 
     </form>
+
+</div>
+        
+    
 
 {% endblock  %}

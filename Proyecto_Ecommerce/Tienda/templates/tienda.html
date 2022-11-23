@@ -1,0 +1,234 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block Slider %}
+<!-- Start Top Search -->
+<div class="top-search">
+<div class="container">
+<div class="input-group">
+    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+    <input type="text" class="form-control" placeholder="Search">
+    <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+</div>
+</div>
+</div>
+<!-- End Top Search -->
+
+<!-- Start All Title Box -->
+<div class="all-title-box">
+<div class="container">
+<div class="row">
+    <div class="col-lg-12">
+        <h2>Tienda</h2>
+    </div>
+</div>
+</div>
+</div>
+<!-- End All Title Box -->
+
+<!-- Start Shop Page  -->
+<div class="shop-box-inner">
+<div class="container">
+<div class="row">
+    <div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
+        <div class="product-categori">
+            <div class="search-product">
+                <form action="{% url 'Buscar' %}" method="GET">{% csrf_token %}
+                    <input class="form-control" placeholder="Buscar..." type="text" name="nombre">
+                    <button type="submit"> <i class="fa fa-search"></i> </button>
+                </form>
+            </div>
+            <div class="filter-sidebar-left">
+                <div class="title-left">
+                    <h3>Categoria</h3>
+                </div>
+                <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
+                    <div class="list-group-collapse sub-men">
+                        <a class="list-group-item list-group-item-action" href="#sub-men1" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">Botellas <small class="text-muted">(100)</small>
+                    </a>
+                        <div class="collapse show" id="sub-men1" data-parent="#list-group-men">
+                            <div class="list-group">
+                                <a href="#" class="list-group-item list-group-item-action active">1 <small class="text-muted">()</small></a>
+                                <a href="#" class="list-group-item list-group-item-action">2 <small class="text-muted">()</small></a>
+                                <a href="#" class="list-group-item list-group-item-action">3 <small class="text-muted">()</small></a>
+                                <a href="#" class="list-group-item list-group-item-action">4 <small class="text-muted">()</small></a>
+                                <a href="#" class="list-group-item list-group-item-action">5 <small class="text-muted">()</small></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group-collapse sub-men">
+                        <a class="list-group-item list-group-item-action" href="#sub-men2" data-toggle="collapse" aria-expanded="false" aria-controls="sub-men2">Latas 
+                    <small class="text-muted">(50)</small>
+                    </a>
+                        <div class="collapse" id="sub-men2" data-parent="#list-group-men">
+                            <div class="list-group">
+                                <a href="#" class="list-group-item list-group-item-action">1 <small class="text-muted">()</small></a>
+                                <a href="#" class="list-group-item list-group-item-action">2 <small class="text-muted">()</small></a>
+                                <a href="#" class="list-group-item list-group-item-action">3 <small class="text-muted">()</small></a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="list-group-item list-group-item-action"> Combos  <small class="text-muted">() </small></a>
+                    <a href="#" class="list-group-item list-group-item-action">Accesorios <small class="text-muted">()</small></a>
+                </div>
+            </div>
+            <div class="filter-brand-left">
+                <div class="title-left">
+                    <h3>Marca</h3>
+                </div>
+                <div class="brand-box">
+                    <ul>
+                        <li>
+                            <div class="radio radio-danger">
+                                <input name="survey" id="Radios1" value="Yes" type="radio">
+                                <label for="Radios1"> Marca1 </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="radio radio-danger">
+                                <input name="survey" id="Radios2" value="No" type="radio">
+                                <label for="Radios2"> Marca2 </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="radio radio-danger">
+                                <input name="survey" id="Radios3" value="declater" type="radio">
+                                <label for="Radios3"> Marca3 </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="radio radio-danger">
+                                <input name="survey" id="Radios4" value="declater" type="radio">
+                                <label for="Radios4"> Marca4 </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="radio radio-danger">
+                                <input name="survey" id="Radios5" value="declater" type="radio">
+                                <label for="Radios5"> Marca5 </label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="radio radio-danger">
+                                <input name="survey" id="Radios6" value="declater" type="radio">
+                                <label for="Radios6"> Marca6 </label>
+                            </div>
+                        </li>
+                        <li>
+                           
+
+                            
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
+        <div class="right-product-box">
+            <div class="product-item-filter row">
+                <div class="col-12 col-sm-8 text-center text-sm-left">
+                    <div class="toolbar-sorter-right">
+                    
+                        <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
+                        <option data-display="Select">Filtrar</option>
+                        <option value="1">Mas vendido</option>
+                        <option value="2">Mayor precio  → Menor precio</option>
+                        <option value="3">Menor precio → Mayor precio</option>
+                    </select>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="row product-categorie-box">
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
+                        <div class="row">
+                            {% for producto in productos %}
+                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                <div class="products-single fix">
+                                    <div class="box-img-hover">
+                                        <div class="type-lb">
+                                            <p class="sale">Nuevo</p>
+                                        </div>
+                                        <img src="{{ producto.imagen.url }}" class="img-fluid" alt="Image">
+                                        <div class="mask-icon">
+                                            <ul>
+                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Detalle"><i class="fas fa-eye"></i></a></li>
+                                            </ul>
+                                            {% if user.is_authenticated %}
+                                            <a class="cart" href="{% url 'Carro:Agregar' producto.id %}">Añadir</a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="why-text">
+                                        <h4>{{producto.nombre}}</h4>
+                                        <h5> $ {{producto.precio}}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                            
+                            {% block Tienda %}
+                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                <div class="products-single fix">
+                                    <div class="box-img-hover">
+                                        <div class="type-lb">
+                                            <p class="new">Oferta</p>
+                                        </div>
+                                        <img src="{% static 'img/Cerveza2.jpg' %}" class="img-fluid" alt="Image">
+                                        <div class="mask-icon">
+                                            <ul>
+                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                            </ul>
+                                            <a class="cart" href="#">Añadir</a>
+                                        </div>
+                                    </div>
+                                    <div class="why-text">
+                                        <h4>Producto2</h4>
+                                        <h5> $9.79</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                <div class="products-single fix">
+                                    <div class="box-img-hover">
+                                        <div class="type-lb">
+                                            <p class="sale">Nuevo</p>
+                                        </div>
+                                        <img src="{% static 'img/Cerveza3.jpg' %}" class="img-fluid" alt="Image">
+                                        <div class="mask-icon">
+                                            <ul>
+                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                            </ul>
+                                            <a class="cart" href="#">Añadir</a>
+                                        </div>
+                                    </div>
+                                    <div class="why-text">
+                                        <h4>Producto3</h4>
+                                        <h5> $9.79</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endblock Tienda %}
+                                
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<!-- End Shop Page -->
+    
+{% endblock Slider %}
+
+
+{% block Destacados %}
+    
+{% endblock Destacados %}

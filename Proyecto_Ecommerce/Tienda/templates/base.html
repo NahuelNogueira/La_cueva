@@ -1,199 +1,261 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
+<!-- Basic -->
+{% load static %}
 <head>
-    {% load static %}
-    <!-- Required meta tags -->
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+
+    <!-- Site Metas -->
+    <title>La Cueva</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png' %}">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
-    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Site CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <!-- Icons -->
+    <link rel="stylesheet" href="{% static 'css/all.css' %}">
 
-    <title>La Bodega Cerveza</title>
 </head>
 
-<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="70">
+<body>
+    <!-- Start Main Top -->
+    <header class="main-header">
+        
+        <!-- Start Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+            <div class="container">
+                <!-- Start Header Navigation -->
+                <div class="navbar-header">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                    <a class="navbar-brand" href="{% url 'Inicio' %}"><img src="{% static 'img/logo.png' %}" class="logo" alt=""></a>
+                </div>
+             
+                <!-- End Header Navigation -->
 
-    <!-- BOTTOM NAV -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                            
+                        <li class="nav-item {% if request.path == '/' %} active {% endif %}"><a class="nav-link" href="{% url 'Inicio' %}">Inicio</a></li> 
+                        </li>
+                        <li class="dropdown {% if request.path == '/catalogo' %} active {% endif %}">
+                            <a href="{% url 'Catalogo' %}" class="nav-link dropdown-toggle" data-toggle="dropdown">Tienda</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'Inicio' %}">Botellas</a></li>
+                                <li><a href="{% url 'Inicio' %}">Latas</a></li>
+                                <li><a href="{% url 'Inicio' %}">Combos</a></li>
+                                <li><a href="{% url 'Inicio' %}">Accesorios</a></li>
+                                <li><a href="{% url 'Inicio' %}">Destapador</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item {% if request.path == '/servicio' %} active {% endif %}"><a class="nav-link" href="{% url 'Inicio' %}">Servicios</a></li>
+                        <li class="nav-item {% if request.path == '/contacto' %} active {% endif %}"><a class="nav-link" href="{% url 'Inicio' %}">Contactanos</a></li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+
+                <!-- Start Atribute Navigation -->
+                <div class="attr-nav">
+                    <ul>
+                        <li class="search"><a href="{% url 'Buscar' %}"><i class="fa fa-search"></i></a></li>
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'Carro:Carrito' %}"><i class="fa fa-shopping-cart fa-fw fa-lg"></i>{{num_items}}</a>
+                        {% endif %}
+					</a></li>
+                    </ul>
+                </div>
+  
+        <!-- End Navigation -->
+    </header>
+  
+    <!-- End Main Top -->
+
+    <!-- Start Top Search -->
+    <div class="top-search">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'Inicio' %}">La Bodega Cerveza<span class="dot">.</span></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    
-                    <li class="nav-item">
-                        <a class="btn btn-brand ms-lg-3" href="{% url 'Catalogo' %}">Catálogo</a>
-                    </li>
-                    <!-- <li class="nav-item">
-                        <a  class="btn btn-brand ms-lg-3" href="#">Carrito</a>
-                    </li>   -->
-                </ul>
-                {% if user.is_authenticated %}
-                    <p>Bienvenido {{user.username}}</p>
-                    <a href="{% url 'Logout' %}" class="btn btn-brand ms-lg-3">Salir</a>
-                    <a href="{% url 'Perfil' %}" class="btn btn-brand ms-lg-3">Perfil</a>
-                {% else %}
-                    <a href="{% url 'Login' %}" class="btn btn-brand ms-lg-3">Iniciar Sesion</a>
-                    <a href="{% url 'Registro' %}" class="btn btn-brand ms-lg-3">Registro</a>
-                {% endif %}
-
-                
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="text" class="form-control" placeholder="Buscar">
+                <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
             </div>
         </div>
-    </nav>
+    </div>
+    <!-- End Top Search -->
 
-    <!-- SLIDER -->
     {% block Slider %}
-        
-    <div class="owl-carousel owl-theme hero-slider">
-        <div class="slide slide1">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 text-center text-white">
-                        <h6 class="text-white text-uppercase">design Driven for professional</h6>
-                        <h1 class="display-3 my-4">We craft digital<br />experiances</h1>
-                        <a href="#" class="btn btn-brand">Get Started</a>
-                        <a href="#" class="btn btn-outline-light ms-3">Our work</a>
+    <!-- Start Slider -->
+    <div id="slides-shop" class="cover-slides">
+        <ul class="slides-container">
+            <li class="text-center">
+                <img src="{% static 'img/banner-01.jpg' %}" alt="">
+                <div class="container">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1 class="m-b-20"><strong> Distribuidores <br> La Cueva</strong></h1>
+                                <p class="m-b-40">Mejores sabores y colores <br></p>
+                                <p><a class="btn hvr-hover" href="#">Servicios</a></p>
+                            </div>
+                        </div>
+                    </div>
+            </li>
+            <li class="text-center">
+                <img src="{% static 'img/banner-02.jpg' %}" alt="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="m-b-20"><strong>Distribuidores<br>La Cueva</strong></h1>
+                            <p class="m-b-40">Desde la mas minima a la maxima calidad en nuestros productos <br></p>
+                            <p><a class="btn hvr-hover" href="#">Servicios</a></p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </li>
+            <li class="text-center">
+                <img src="{% static 'img/banner-03.jpg' %}" alt="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="m-b-20"><strong>Distribuidores<br>La Cueva</strong></h1>
+                            <p class="m-b-40">Cosechado en las mejores huertas</p>
+                            <p><a class="btn hvr-hover" href="#">Contactanos</a></p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="slides-navigation">
+            <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
         </div>
-        <div class="slide slide2">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-lg-10 offset-lg-1 text-white">
-                        <h6 class="text-white text-uppercase">We craft digital experiances</h6>
-                        <h1 class="display-3 my-4">Design Driven For <br />Professionals</h1>
-                        <a href="#" class="btn btn-brand">Get Started</a>
-                        <a href="#" class="btn btn-outline-light ms-3">Our work</a>
+    </div>
+    <!-- End Slider -->
+    {% endblock %}
+    
+    
+    {% block Destacados %}
+    <!-- Start Categories  -->
+    <div class="categories-shop">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="shop-cat-box">
+                        <img class="img-fluid" src="{% static 'img/Cerveza1.jpg' %}" alt="" />
+                        <a class="btn hvr-hover" href="{% url 'Catalogo' %}">Producto1</a>
+                    </div>
+                    <div class="shop-cat-box">
+                        <img class="img-fluid" src="{% static 'img/Cerveza2.jpg' %}" alt="" />
+                        <a class="btn hvr-hover" href="{% url 'Catalogo' %}">Producto2</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="shop-cat-box">
+                        <img class="img-fluid" src="{% static 'img/Cerveza3.jpg' %}" alt="" />
+                        <a class="btn hvr-hover" href="{% url 'Catalogo' %}">Producto3</a>
+                    </div>
+                    <div class="shop-cat-box">
+                        <img class="img-fluid" src="{% static 'img/Cerveza4.jpg' %}" alt="" />
+                        <a class="btn hvr-hover" href="{% url 'Catalogo' %}">Producto4</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="shop-cat-box">
+                        <img class="img-fluid" src="{% static 'img/Cerveza5.jpg' %}" alt="" />
+                        <a class="btn hvr-hover" href="{% url 'Catalogo' %}">Producto5</a>
+                    </div>
+                    <div class="shop-cat-box">
+                        <img class="img-fluid" src="{% static 'img/Cerveza6.jpg' %}" alt="" />
+                        <a class="btn hvr-hover" href="{% url 'Catalogo' %}">Producto6</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    {% endblock %}
-
-        
+    {% endblock  %}
     
-    <!-- MILESTONE -->
-        
-    <section id="milestone">
-        <div class="container">
-            <div class="row text-center justify-content-center gy-4">
-                <div class="col-lg-2 col-sm-6">
-                    <h1 class="display-4">90K+</h1>
-                    <p class="mb-0">Happy Clients</p>
-                </div>
-                <div class="col-lg-2 col-sm-6">
-                    <h1 class="display-4">45M</h1>
-                    <p class="mb-0">Lines of code</p>
-                </div>
-                <div class="col-lg-2 col-sm-6">
-                    <h1 class="display-4">190</h1>
-                    <p class="mb-0">Total Downloads</p>
-                </div>
-                <div class="col-lg-2 col-sm-6">
-                    <h1 class="display-4">380K</h1>
-                    <p class="mb-0">YouTube Subscribers</p>
-                </div>
-            </div>
+    <div class="footer-copyright">
+        <p class="footer-company">
         </div>
-    </section>
+        <!-- Start Footer  -->
+        <footer>
+            <div class="footer-main">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <div class="footer-widget">
+                                <h4>Sobre La Cueva</h4>
+                                
+                                <p>Es importante cuidar al paciente, ser seguido por el cliente, pero al mismo tiempo se verá afectado por unos dolores y sufrimientos muy grandes. Porque para llegar al más mínimo detalle, nadie debe practicar ningún tipo de trabajo a menos que obtenga algún beneficio de él.
+                                </p>
+                                
+                                <ul>
+                                    <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                                </ul>
 
-    <!-- Imagenes -->
-        <div id="projects-slider" class="owl-theme owl-carousel">
-            <div class="project">
-                <div class="overlay"></div>
-                <img src="{% static 'img/Cer1.png' %}" alt="">
-                <div class="content">
-                    <h2>Consulting Marketing</h2>
-                    <h6>Website Design</h6>
-                </div>
-            </div>
-            <div class="project">
-                <div class="overlay"></div>
-                <img src="{% static 'img/Cer2.jpg' %}" alt="">
-                <div class="content">
-                    <h2>Consulting Marketing</h2>
-                    <h6>Website Design</h6>
-                </div>
-            </div>
-            <div class="project">
-                <div class="overlay"></div>
-                <img src="{% static 'img/Cer3.jpg' %}" alt="">
-                <div class="content">
-                    <h2>Consulting Marketing</h2>
-                    <h6>Website Design</h6>
-                </div>
-            </div>
-            <div class="project">
-                <div class="overlay"></div>
-                <img src="{% static 'img/Cer4.jpg' %}" alt="">
-                <div class="content">
-                    <h2>Consulting Marketing</h2>
-                    <h6>Website Design</h6>
-                </div>
-            </div>
-            <div class="project">
-                <div class="overlay"></div>
-                <img src="{% static 'img/Ce5.jpg' %}" alt="">
-                <div class="content">
-                    <h2>Consulting Marketing</h2>
-                    <h6>Website Design</h6>
-                </div>
-            </div>
-        </div>
-    </section>
-
-   <h1>
-   </h1>
-   <h1>
-   </h1>
-
-    <footer>
-        <div class="footer-top text-center">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6 text-center">
-                        <h4 class="navbar-brand">La Bodega Cerveza<span class="dot">.</span></h4>
-                        <p>Este Proyecto fue creado con la intencion de aprender y mejor en el servicio.</p>
-                        <div class="col-auto social-icons">
-                            <a href="#"><i class='bx bxl-facebook'></i></a>
-                            <a href="#"><i class='bx bxl-twitter'></i></a>
-                            <a href="#"><i class='bx bxl-instagram'></i></a>
-                            <a href="#"><i class='bx bxl-pinterest'></i></a>
-                        </div>
-                        <div class="col-auto conditions-section">
-                            <a href="#">privacy</a>
-                            <a href="#">terms</a>
-                            <a href="#">disclaimer</i></a>
+                            </div>
                         </div>
                     </div>
-         
-   
 
+                    <div class="col-lg-4 col-md-12 col-sm-12" style="padding-left: 0px;">
+                        <div class="footer-link-contact">
+                            <h4>Contacta con nosotros</h4>
+                            <ul>
+                                <li>
+                                    <p><i class="fas fa-map-marker-alt"></i>Direccion: Chacabuco 2000. Buenos Aires, Argentina</p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-phone-square"></i>Tel: <a href="tel:+1-888705770">0341 - 153761060</a></p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-envelope"></i>Email: <a href="mailto:contactinfo@gmail.com">lacueva@gmail.com</a></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer  -->
 
+    <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
-
-
-
-
-
-
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <!-- ALL JS FILES -->
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- ALL PLUGINS -->
+    <script src="{% static 'js/jquery.superslides.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap-select.js' %}"></script>
+    <script src="{% static 'js/inewsticker.js' %}"></script>
+    <script src="{% static 'js/bootsnav.js.' %}"></script>
+    <script src="{% static 'js/images-loded.min.js' %}"></script>
+    <script src="{% static 'js/isotope.min.js' %}"></script>
     <script src="{% static 'js/owl.carousel.min.js' %}"></script>
-    <script src="{% static 'js/app.js' %}"></script>
+    <script src="{% static 'js/baguetteBox.min.js' %}"></script>
+    <script src="{% static 'js/form-validator.min.js' %}"></script>
+    <script src="{% static 'js/contact-form-script.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
 </body>
 
 </html>
