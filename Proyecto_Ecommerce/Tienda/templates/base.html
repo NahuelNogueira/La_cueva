@@ -62,7 +62,6 @@
                                 <li><a href="{% url 'Inicio' %}">Latas</a></li>
                                 <li><a href="{% url 'Inicio' %}">Combos</a></li>
                                 <li><a href="{% url 'Inicio' %}">Accesorios</a></li>
-                                <li><a href="{% url 'Inicio' %}">Destapador</a></li>
                             </ul>
                         </li>
                         <li class="nav-item {% if request.path == '/servicio' %} active {% endif %}"><a class="nav-link" href="{% url 'Inicio' %}">Servicios</a></li>
@@ -75,11 +74,27 @@
                 <div class="attr-nav">
                     <ul>
                         <li class="search"><a href="{% url 'Buscar' %}"><i class="fa fa-search"></i></a></li>
-                        {% if user.is_authenticated %}
-                            <a href="{% url 'Carro:Carrito' %}"><i class="fa fa-shopping-cart fa-fw fa-lg"></i>{{num_items}}</a>
-                        {% endif %}
-					</a></li>
                     </ul>
+                </div>
+                
+                <div class="nav-item" style="padding-left: 30px">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'Carro:Carrito' %}"><i class="fa fa-shopping-cart fa-fw fa-lg"></i>{{num_items}}</a>
+                    {% else %}
+                        <a href="{% url 'Login' %}"><i class="fa fa-sign-in-alt"></i></a>
+                    {% endif %}
+                </div>
+                
+                <div class="nav-item" style="padding-left: 15px;">
+                    {% if user.is_authenticated %}
+                        <li class="dropdown {% if request.path == '/perfil' %} active {% endif %}">
+                            <a href="{% url 'Perfil' %}" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user-circle"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url 'Perfil' %}">Editar Perfil</a></li>
+                                <li><a href="{% url 'Logout' %}">Salir</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
                 </div>
   
         <!-- End Navigation -->
