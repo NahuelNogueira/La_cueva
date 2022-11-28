@@ -30,3 +30,13 @@ class UserRegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'last_name', 'first_name', 'email')
+        
+class ContactForm(forms.Form):
+    
+    nombre = forms.CharField(label='Nombre', required=True)
+    
+    email = forms.CharField(label='Email', required=True)
+    
+    servicio = forms.CharField(label='Servicio')
+    
+    mensaje = forms.CharField(label='Mensaje', widget=forms.Textarea)

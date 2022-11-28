@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .carro import Carro
 from Producto.models import Producto, Categoria
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -11,6 +12,7 @@ def carrito(request):
     
     return render(request, 'carrito.html', {"categorias":categorias, "productos":productos})
 
+@login_required(login_url="Login")
 def agregar_producto(request, producto_id):
     
     carro=Carro(request)
@@ -19,8 +21,9 @@ def agregar_producto(request, producto_id):
     
     carro.agregar(producto=producto)
     
-    return redirect("Carro:Carrito")
+    return redirect("Catalogo")
 
+@login_required(login_url="Login")
 def eliminar_producto(request, producto_id):
     
     carro=Carro(request)
@@ -31,6 +34,7 @@ def eliminar_producto(request, producto_id):
     
     return redirect("Carro:Carrito")
 
+@login_required(login_url="Login")
 def restar_producto(request, producto_id):
     
     carro=Carro(request)
@@ -41,6 +45,7 @@ def restar_producto(request, producto_id):
     
     return redirect("Carro:Carrito")
 
+@login_required(login_url="Login")
 def limpiar_carro(request, producto_id):
     
     carro=Carro(request)

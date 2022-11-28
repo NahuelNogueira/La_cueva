@@ -1,24 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-  <!-- Basic -->
-  {% extends 'base.html' %} {% load static %}
+<!-- Basic -->
+  {% extends 'base.html' %} 
+  {% load static %}
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-    <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- Site Metas -->
-    <title>ThewayShop - Ecommerce Bootstrap 4 HTML Template</title>
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-
-    <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
     <!-- Site CSS -->
@@ -108,10 +91,6 @@
           <div class="col-lg-4 col-sm-12">
             <div class="order-box">
               <h3>Pedido</h3>
-              <!-- <div class="d-flex">
-                <h4>Sub Total</h4>
-                <div class="ml-auto font-weight-bold">$ 130</div>
-              </div> -->
               <hr class="my-1" />
               <div class="d-flex">
                 <h4>Envío</h4>
@@ -127,7 +106,7 @@
           </div>
           {% if request.session.carro.items %}
           <div class="col-12 d-flex shopping-box">
-            <a href="checkout.html" class="ml-auto btn hvr-hover">Ir a pagar</a>
+            <a href="{% url 'Procesar_pedido' %}" class="ml-auto btn hvr-hover">Confirmar compra</a>
           </div>
           {% endif %}
         </div>

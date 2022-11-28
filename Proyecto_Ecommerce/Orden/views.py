@@ -34,12 +34,14 @@ def procesar_pedido(request):
         items_pedidos=items_pedidos,
         nombre_usuario=request.user.username,
         email_usuario=request.user.usermail,
+        direccion_usuario=reques.user.address,
     )
     
     messages.success(request, "El pedido se ha creado con éxito")
     
     return redirect('Inicio')
 
+@login_required(login_url="Login")
 def enviar_mail(**kwargs):
     
     asunto = "La Bodega Cerveza"

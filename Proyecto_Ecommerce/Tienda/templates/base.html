@@ -17,7 +17,6 @@
 
     <!-- Site Icons -->
     <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
-    <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png' %}">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
@@ -29,7 +28,6 @@
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">
     <!-- Icons -->
     <link rel="stylesheet" href="{% static 'css/all.css' %}">
-
 </head>
 
 <body>
@@ -58,22 +56,14 @@
                         <li class="dropdown {% if request.path == '/catalogo' %} active {% endif %}">
                             <a href="{% url 'Catalogo' %}" class="nav-link dropdown-toggle" data-toggle="dropdown">Tienda</a>
                             <ul class="dropdown-menu">
-                                <li><a href="{% url 'Inicio' %}">Botellas</a></li>
-                                <li><a href="{% url 'Inicio' %}">Latas</a></li>
-                                <li><a href="{% url 'Inicio' %}">Combos</a></li>
-                                <li><a href="{% url 'Inicio' %}">Accesorios</a></li>
+                                <li><a href="{% url 'Catalogo' %}">Botellas</a></li>
+                                <li><a href="{% url 'Catalogo' %}">Latas</a></li>
+                                <li><a href="{% url 'Catalogo' %}">Combos</a></li>
+                                <li><a href="{% url 'Catalogo' %}">Accesorios</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item {% if request.path == '/servicio' %} active {% endif %}"><a class="nav-link" href="{% url 'Inicio' %}">Servicios</a></li>
-                        <li class="nav-item {% if request.path == '/contacto' %} active {% endif %}"><a class="nav-link" href="{% url 'Inicio' %}">Contactanos</a></li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-
-                <!-- Start Atribute Navigation -->
-                <div class="attr-nav">
-                    <ul>
-                        <li class="search"><a href="{% url 'Buscar' %}"><i class="fa fa-search"></i></a></li>
+                        <li class="nav-item {% if request.path == '/servicios' %} active {% endif %}"><a class="nav-link" href="{% url 'Servicios' %}">Servicios</a></li>
+                        <li class="nav-item {% if request.path == '/contacto' %} active {% endif %}"><a class="nav-link" href="{% url 'Contacto' %}">Contactanos</a></li>
                     </ul>
                 </div>
                 
@@ -126,7 +116,7 @@
                             <div class="col-md-12">
                                 <h1 class="m-b-20"><strong> Distribuidores <br> La Cueva</strong></h1>
                                 <p class="m-b-40">Mejores sabores y colores <br></p>
-                                <p><a class="btn hvr-hover" href="#">Servicios</a></p>
+                                <p><a class="btn hvr-hover" href="{% url 'Servicios' %}">Servicios</a></p>
                             </div>
                         </div>
                     </div>
@@ -138,7 +128,7 @@
                         <div class="col-md-12">
                             <h1 class="m-b-20"><strong>Distribuidores<br>La Cueva</strong></h1>
                             <p class="m-b-40">Desde la mas minima a la maxima calidad en nuestros productos <br></p>
-                            <p><a class="btn hvr-hover" href="#">Servicios</a></p>
+                            <p><a class="btn hvr-hover" href="{% url 'Contacto' %}">Contactanos</a></p>
                         </div>
                     </div>
                 </div>
@@ -150,7 +140,7 @@
                         <div class="col-md-12">
                             <h1 class="m-b-20"><strong>Distribuidores<br>La Cueva</strong></h1>
                             <p class="m-b-40">Cosechado en las mejores huertas</p>
-                            <p><a class="btn hvr-hover" href="#">Contactanos</a></p>
+                            <p><a class="btn hvr-hover" href="{% url 'Nosotros' %}">Sobre nosotros</a></p>
                         </div>
                     </div>
                 </div>
@@ -173,31 +163,31 @@
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="shop-cat-box">
                         <img class="img-fluid" src="{% static 'img/Cerveza1.jpg' %}" alt="" />
-                        <a class="btn hvr-hover" href="{% url 'Catalogo' %}">Producto1</a>
+                        <a class="btn hvr-hover" href="{% url 'Catalogo' %}">Nuestros destacados</a>
                     </div>
                     <div class="shop-cat-box">
                         <img class="img-fluid" src="{% static 'img/Cerveza2.jpg' %}" alt="" />
-                        <a class="btn hvr-hover" href="{% url 'Catalogo' %}">Producto2</a>
+                        <a class="btn hvr-hover" href="{% url 'Catalogo' %}">Nuestros destacados</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="shop-cat-box">
                         <img class="img-fluid" src="{% static 'img/Cerveza3.jpg' %}" alt="" />
-                        <a class="btn hvr-hover" href="{% url 'Catalogo' %}">Producto3</a>
+                        <a class="btn hvr-hover" href="{% url 'Catalogo' %}">Nuestros destacados</a>
                     </div>
                     <div class="shop-cat-box">
                         <img class="img-fluid" src="{% static 'img/Cerveza4.jpg' %}" alt="" />
-                        <a class="btn hvr-hover" href="{% url 'Catalogo' %}">Producto4</a>
+                        <a class="btn hvr-hover" href="{% url 'Catalogo' %}">Nuestros destacados</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="shop-cat-box">
                         <img class="img-fluid" src="{% static 'img/Cerveza5.jpg' %}" alt="" />
-                        <a class="btn hvr-hover" href="{% url 'Catalogo' %}">Producto5</a>
+                        <a class="btn hvr-hover" href="{% url 'Catalogo' %}">Nuestros destacados</a>
                     </div>
                     <div class="shop-cat-box">
                         <img class="img-fluid" src="{% static 'img/Cerveza6.jpg' %}" alt="" />
-                        <a class="btn hvr-hover" href="{% url 'Catalogo' %}">Producto6</a>
+                        <a class="btn hvr-hover" href="{% url 'Catalogo' %}">Nuestros destacados</a>
                     </div>
                 </div>
             </div>
@@ -217,7 +207,7 @@
                             <div class="footer-widget">
                                 <h4>Sobre La Cueva</h4>
                                 
-                                <p>Es importante cuidar al paciente, ser seguido por el cliente, pero al mismo tiempo se verá afectado por unos dolores y sufrimientos muy grandes. Porque para llegar al más mínimo detalle, nadie debe practicar ningún tipo de trabajo a menos que obtenga algún beneficio de él.
+                                <p>Siempre priorizamos la calidad. En nuestra tienda encontrarás las mejores bebidas al mejor precio! Ofrecemos servicios para eventos. Día a día trabajamos para mejorarnos
                                 </p>
                                 
                                 <ul>
@@ -239,10 +229,10 @@
                                     <p><i class="fas fa-map-marker-alt"></i>Direccion: Chacabuco 2000. Buenos Aires, Argentina</p>
                                 </li>
                                 <li>
-                                    <p><i class="fas fa-phone-square"></i>Tel: <a href="tel:+1-888705770">0341 - 153761060</a></p>
+                                    <p><i class="fas fa-phone-square"></i>Tel: <a href="#">0341 - 153761060</a></p>
                                 </li>
                                 <li>
-                                    <p><i class="fas fa-envelope"></i>Email: <a href="mailto:contactinfo@gmail.com">lacueva@gmail.com</a></p>
+                                    <p><i class="fas fa-envelope"></i>Email: <a href="#">lacueva@gmail.com</a></p>
                                 </li>
                             </ul>
                         </div>

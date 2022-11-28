@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
-
-from .forms import UserRegisterForm, UserEditForm
+from django.contrib.auth.decorators import login_required
+from .models import Servicios
+from .forms import UserRegisterForm, UserEditForm, ContactForm
 from Producto.models import Producto, Categoria
 
 # Create your views here.
@@ -71,6 +72,7 @@ def registro(request):
     
         return render(request, "registro.html", {"form":form})
 
+@login_required(login_url="Login")
 def editar_perfil(request):
     
     usuario = request.user
@@ -121,4 +123,46 @@ def buscar(request):
         
         respuesta = 'No se encontró ese producto'
         
-        return render(request, 'busqueda.html', {"respuesta":respuesta})     
+        return render(request, 'busqueda.html', {"respuesta":respuesta})
+
+@login_required(login_url="Login")
+def contacto(request):
+    
+    form=ContactForm()
+
+    if request.method=="POST":
+        
+        form=ContactForm(data=request.POST)
+        
+        if form.is_valid():
+            
+            nombre=request.POST.get('name')
+            email=request.POST.get('email')
+            servicio=request.POST.get('servicio')
+            contenido=request.POST.get('contenido')
+
+            email=EmailMessage("Mensaje desde App Django",
+            "El usuario con nombre {} con la dirección {} escribe lo siguiente:\n\n {}".format(nombre,email,servicio,contenido),
+            "",["lacueva@gmail.com"],reply_to=[email])
+            
+            try:
+                email.send()
+                return redirect("/contact/?valid")
+            except:
+                redirect("/contact/?notvalid")
+
+
+    return render(request, "contacto.html", {'form':form})
+    
+    return render(request, 'contacto.html')
+
+@login_required(login_url="Login")
+def servicios(request):
+    
+    servicios = Servicios.objects.all()
+    
+    return render(request, 'servicios.html', {"servicios":servicios})
+
+def nosotros(request):
+    
+    return render(request, 'nosotros.html')

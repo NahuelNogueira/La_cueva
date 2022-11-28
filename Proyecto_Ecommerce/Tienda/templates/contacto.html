@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block Slider %}
+
+<div class="contentForm" style="text-align: center;">
+
+    {% if "valid" in request.GET %}
+        <p style="color: green;">Información enviada correctamente, gracias! </p>
+    {% endif %}
+    
+    <form action="" method="POST">
+        {% csrf_token %}
+          {{form.as_p}}
+        <input type="submit" value="Enviar" style="width:150px";>
+    </form>
+
+</div>
+
+{% endblock Slider %}
+
+{% block Destacados %}
+  
+{% endblock Destacados %}
+  
