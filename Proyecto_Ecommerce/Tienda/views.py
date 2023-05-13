@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from django.core.mail import send_mail
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
@@ -128,33 +130,36 @@ def buscar(request):
 @login_required(login_url="Login")
 def contacto(request):
     
-    form=ContactForm()
-
-    if request.method=="POST":
+    if request.method == 'POST':
         
-        form=ContactForm(data=request.POST)
+        form = ContactForm(request.POST)
         
         if form.is_valid():
             
-            nombre=request.POST.get('name')
-            email=request.POST.get('email')
-            servicio=request.POST.get('servicio')
-            contenido=request.POST.get('contenido')
-
-            email=EmailMessage("Mensaje desde App Django",
-            "El usuario con nombre {} con la dirección {} escribe lo siguiente:\n\n {}".format(nombre,email,servicio,contenido),
-            "",["lacueva@gmail.com"],reply_to=[email])
+            nombre = form.cleaned_data['nombre']
+            email = form.cleaned_data['email']
+            servicio = form.cleaned_data['servicio']
+            mensaje = form.cleaned_data['mensaje']
             
-            try:
-                email.send()
-                return redirect("/contact/?valid")
-            except:
-                redirect("/contact/?notvalid")
+            # Envío del correo electrónico
+            
+            asunto = 'Nuevo mensaje de contacto'
+            mensaje = f'Nombre: {nombre}\nEmail: {email}\nMensaje: {mensaje}'
+            correo_origen = settings.EMAIL_HOST_USER
+            correo_destino = ['nahuel.nogueira93@hotmail.com']
+            
+            send_mail(asunto, mensaje, correo_origen, correo_destino, fail_silently=False)
+            
+            return render(request, 'confirmacion.html')
+        
+    else:
+        
+        form = ContactForm()
+        
+    return render(request, 'contacto.html', {'form': form})
 
-
-    return render(request, "contacto.html", {'form':form})
-    
-    return render(request, 'contacto.html')
+def confirmacion(request):
+    return render(request, 'confirmacion.html')
 
 @login_required(login_url="Login")
 def servicios(request):

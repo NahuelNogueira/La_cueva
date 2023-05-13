@@ -3,7 +3,7 @@ from django.urls import path
 from django.contrib.auth.views import LogoutView
 
 
-from .views import inicio, catalogo, login_request, registro, editar_perfil, buscar, contacto, servicios, nosotros
+from .views import *
 
 
 urlpatterns = [
@@ -15,6 +15,7 @@ urlpatterns = [
     path('editar_perfil', editar_perfil, name='Perfil'),
     path('buscar', buscar, name='Buscar'),
     path('contacto', contacto, name='Contacto'),
+    path('confirmacion', confirmacion, name='Confirmacion'),
     path('servicios', servicios, name='Servicios'),
     path('nosotros', nosotros, name='Nosotros'),
 ]

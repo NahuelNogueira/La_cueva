@@ -1,26 +1,20 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base.html' %} {% load static %} {% block Slider %}
 
-{% block Slider %}
+<div style="text-align: center">
+  <h1 style="font-weight: bold">Hola! Un gusto conocerte</h1>
 
-<div style="text-align: center;">
+  <form action="" method="POST">
+    {% csrf_token %} {% for field in form %}
+    <div class="fieldWrapper">
+      {{ field.errors }} {{ field.label_tag }} {{ field }}
+    </div>
+    {% endfor %}
 
-    <h1 style="font-weight: bold;">Hola! Un gusto conocerte</h1>
+    <button type="submit">Registrate</button>
+  </form>
 
-    <form action="" method="POST">{% csrf_token %}
+  <p>Ya tienes una cuenta?</p>
+  <a href="{% url 'Login' %}">Click aqui</a>
+</div>
 
-        {{form.as_p}}
-
-        <button type="submit">Registrate</button>
-
-    </form>
-
-    <p>Ya tienes una cuenta?</p><a href="{% url 'Login' %}">Click aqui</a>
-</div>    
-    
-{% endblock  %}
-
-{% block Destacados %}
-    
-{% endblock Destacados %}
-    
+{% endblock %} {% block Destacados %} {% endblock Destacados %}

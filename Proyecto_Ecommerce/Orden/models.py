@@ -17,7 +17,7 @@ class Pedido(models.Model):
     
     user = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
     fecha_pedido = models.DateField(auto_now_add=True)
-    pagado = models.BooleanField()
+    pagado = models.BooleanField(null=True)
     estado = models.CharField(max_length=50, choices=ESTADOS, default=PEDIDO)
     
     @property

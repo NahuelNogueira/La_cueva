@@ -3,31 +3,57 @@
 
 {% block Slider %}
 
-<div style="text-align: center;">
-    <h1 style="font-weight: bold;">Bienvenido!</h2>
-    <form action="" method="POST">{% csrf_token %}
-        
-        {% if messages %}
-        {% for mensaje in messages %}
-            <span class="alert alert-{{mensaje.tags}}">{{mensaje}}</span>
-        {% endfor %}
-        {% endif %}
-        
-        {{form.as_p}}
+<div class="background">
+  <section id="containter">
+    <h2 class="">Iniciar Sesion</h2>
+    <div class="">
+      <form
+        action=""
+        method="POST"
+        class=""
+        source="custom"
+        name="form-4"
+        style="padding: 0px"
+      >
+        {% csrf_token %}
+        <div class="">
+          {% if messages %} {% for mensaje in messages %}
+          <span class="alert alert-{{mensaje.tags}}">{{mensaje}}</span>
+          {% endfor %} {% endif %}
 
-        <button type="submit">Iniciar Sesión</button>
-
-    </form>
-
-    <p>Aun no te registraste?</p><a href="{% url 'Registro' %}">Click aqui</a>
-    
+          <label for="username" class=""></label>
+          <input
+            type="text"
+            placeholder="Ingrese su nombre de usuario"
+            id="username"
+            name="username"
+            required
+          />
+        </div>
+        <div class="">
+          <label for="password" class=""></label>
+          <input
+            type="password"
+            placeholder="Ingrese su contraseña"
+            id="password"
+            name="password"
+            required
+          />
+        </div>
+        <div class="">
+          <input type="checkbox" id="checkbox" name="remember" value="On" />
+          <label for="checkbox" class="u-label">Mantener</label>
+        </div>
+        <div class="">
+          <button type="submit">Iniciar Sesión</button>
+        </div>
+      </form>
+      <div class="extras">
+        <p>Aun no te registraste?</p>
+        <a href="{% url 'Registro' %}">Click aqui</a>
+      </div>
+    </div>
+  </section>
 </div>
-    
 
-    
-{% endblock  %}
-
-{% block Destacados %}
-    
-{% endblock Destacados %}
-    
+{% endblock %} {% block Destacados %} {% endblock Destacados %}

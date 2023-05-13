@@ -1,11 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.core.mail import send_mail
+from django.conf import settings 
 from django.contrib.auth.decorators import login_required
 from .models import Pedido, Item_Pedido
 from Carro.carro import Carro
+from Tienda.views import confirmacion
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -16,45 +19,24 @@ def procesar_pedido(request):
     
     carro = Carro(request)
     
-    items_pedidos=list()
+    items=list()
     
     for key, value in carro.carro.items():
         
-        items_pedidos.append(Item_Pedido(
+        items.append(Item_Pedido(
             producto_id=key,
             cantidad=value["cantidad"],
             user=request.user,
             pedido=pedido
         ))
         
-    Item_Pedido.objects.bulk_create(items_pedidos)
+    Item_Pedido.objects.bulk_create(items)
     
-    enviar_mail(
-        pedido=pedido,
-        items_pedidos=items_pedidos,
-        nombre_usuario=request.user.username,
-        email_usuario=request.user.usermail,
-        direccion_usuario=reques.user.address,
-    )
+    asunto = "Nuevo pedido"
+    mensaje = f'Nombre: {request.user}\n\nProductos:\n{items}'
     
-    messages.success(request, "El pedido se ha creado con éxito")
+    from_email=settings.EMAIL_HOST_USER
     
-    return redirect('Inicio')
-
-@login_required(login_url="Login")
-def enviar_mail(**kwargs):
+    send_mail(asunto, mensaje, from_email, ['nahuel.nogueira93@hotmail.com'], fail_silently=False)
     
-    asunto = "La Bodega Cerveza"
-    mensaje = render_to_string("pedido.html", {
-        "pedido":kwargs.get("pedido"),
-        "items_pedidos":kwargs.get("items_pedidos"),
-        "nombre_usuario":kwargs.get("nombre_usuario")
-    })
-    
-    mensaje_texto=strip_tags(mensaje)
-    
-    from_email="tiendabebidas@gmail.com"
-    
-    to=kwargs.get("email_usuario")
-    
-    send_mail(asunto, mensaje_texto, from_email, [to], html_message=mensaje)
+    return confirmacion(request)
